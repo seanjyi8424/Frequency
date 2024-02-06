@@ -1,10 +1,12 @@
 import React,{ useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import Logo from '../assets/images/logo.js';
-import Twitter from '../assets/images/twitter.jsx';
-import Instagram from '../assets/images/instagram.jsx';
-import Facebook from '../assets/images/facebook.jsx';
+
+import Logo from '../assets/images/frequency_logo/logo.js';
+import Twitter from '../assets/images/platform_logos/twitter.jsx';
+import Instagram from '../assets/images/platform_logos/instagram.jsx';
+import Facebook from '../assets/images/platform_logos/facebook.jsx';
+import Google from '../assets/images/platform_logos/google.jsx';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -26,7 +28,7 @@ const Register = () => {
                     fontSize:28, fontWeight:'500',
                     color:'#333',marginBottom:30,
                     }}>
-                    Login
+                    Register
                 </Text>
 
                 <View 
@@ -65,9 +67,6 @@ const Register = () => {
                         style={{flex: 1, paddingVertical: 0}}
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity onPress={() => {}}>
-                        <Text style={{fontWeight:'700'}}>Forgot?</Text>
-                    </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity 
@@ -85,16 +84,16 @@ const Register = () => {
                             fontSize:16,
                             color:'#fff'
                         }}>
-                        Login
+                        Register
                     </Text>
                 </TouchableOpacity>
                 <Text 
                     style={{
-                        textAlign:'center,',
+                        textAlign:'center',
                         color:'#666',
                         marginBottom:30
                     }}>
-                    Or, login with...
+                    Or, register with...
                 </Text>
                 <View 
                     style={{
@@ -113,6 +112,18 @@ const Register = () => {
                         }}>
                         <Facebook height={24} width={24} />
                     </TouchableOpacity>
+
+                    <TouchableOpacity 
+                        onPress={() => {}} 
+                        style={{
+                            borderColor:'#ddd',
+                            borderWidth:2,
+                            borderRadius:10,
+                            paddingHorizontal:30,
+                            paddingVertical:10
+                        }}>
+                        <Google height={24} width={24} />
+                    </TouchableOpacity>                    
                     
                     <TouchableOpacity 
                         onPress={() => {}} 
