@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 import Logo from '../assets/images/frequency_logo/logo.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
@@ -11,7 +11,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Register = () => {
-    const router = useRouter();
+    const navigation = useNavigation();
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center'}}>
@@ -157,7 +157,7 @@ const Register = () => {
                         marginBottom:30
                     }}>
                     <Text>Already Registered? </Text>
-                    <TouchableOpacity onPress={() => router.back(true)}>
+                    <TouchableOpacity onPress={() => navigation.replace('index')}>
                         <Text 
                             style={{
                                 color:'#AD40AF',
