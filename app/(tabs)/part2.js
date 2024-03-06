@@ -1,11 +1,11 @@
 import React,{ useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
-import Logo from '../assets/images/frequency_logo/logo.js';
-import Twitter from '../assets/images/platform_logos/twitter.jsx';
-import Instagram from '../assets/images/platform_logos/instagram.jsx';
-import Facebook from '../assets/images/platform_logos/facebook.jsx';
-import Google from '../assets/images/platform_logos/google.jsx';
+import Logo from '../../assets/images/frequency_logo/logo.js';
+import Twitter from '../../assets/images/platform_logos/twitter.jsx';
+import Instagram from '../../assets/images/platform_logos/instagram.jsx';
+import Facebook from '../../assets/images/platform_logos/facebook.jsx';
+import Google from '../../assets/images/platform_logos/google.jsx';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 

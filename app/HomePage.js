@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, Link } from 'expo-router';
 
 const Homepage = () => {
     const navigation = useNavigation();
@@ -17,7 +17,7 @@ const Homepage = () => {
                     Welcome!
                 </Text>
                 <TouchableOpacity
-                    onPress={() => navigation.replace('SpotifyRankings')}
+                    onPress={() => navigation.replace('inter')}
                     style={{
                         backgroundColor: '#AD40AF',
                         padding: 20,

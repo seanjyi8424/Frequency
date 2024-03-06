@@ -2,6 +2,7 @@ import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Layout = () => {
     const [fontsLoaded] = useFonts({
@@ -17,12 +18,11 @@ const Layout = () => {
 
     if(!fontsLoaded) return null;
 
-    return <Stack 
-        screenOptions={{
-            headerShown: false
-        }}
-        onLayout={onLayoutRootView}
-    />;
+    return (
+        <Stack onLayout={onLayoutRootView} >
+            <Stack.Screen name ="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+    );
 }
 
 export default Layout;
