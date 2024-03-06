@@ -1,11 +1,6 @@
 import React,{ useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
-<<<<<<< Updated upstream
-import { Stack, useRouter } from 'expo-router';
-=======
 import { useNavigation } from '@react-navigation/native';
->>>>>>> Stashed changes
-
 import Logo from '../assets/images/frequency_logo/logo.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
 import Instagram from '../assets/images/platform_logos/instagram.jsx';
@@ -13,13 +8,10 @@ import Facebook from '../assets/images/platform_logos/facebook.jsx';
 import Google from '../assets/images/platform_logos/google.jsx';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-<<<<<<< Updated upstream
-=======
 import { AsyncStorage } from 'react-native';
->>>>>>> Stashed changes
 
 const Login = () => {
-    const router = useRouter();
+    const navigation = useNavigation();
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center'}}>
@@ -79,14 +71,8 @@ const Login = () => {
                         <Text style={{fontWeight:'700'}}>Forgot?</Text>
                     </TouchableOpacity>
                 </View>
-<<<<<<< Updated upstream
-
-                <TouchableOpacity 
-                    onPress={() => {}} 
-=======
                 <TouchableOpacity
                     onPress={() => navigation.replace('HomePage')}
->>>>>>> Stashed changes
                     style={{
                         backgroundColor:'#AD40AF',
                         padding:20,
