@@ -1,78 +1,92 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, FlatList, Text, Linking, StyleSheet, Image, ScrollView } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, TextInput, Button, FlatList, Text, Linking, StyleSheet, Image } from 'react-native';
+
+const SearchBar = ({ onSearch }) => {
+  const [input, setInput] = useState('');
+
+  const handleSearchPress = () => {
+    onSearch(`most recent news ${input}`); // news prefix
+  };
+
+  return (
+    <View style={styles.header}>
+      <TextInput
+        style={styles.searchInput}
+        value={input}
+        onChangeText={setInput}
+        placeholder="Enter artist name"
+        returnKeyType="search"
+        onSubmitEditing={handleSearchPress} // Trigger the search when the user submits the keyboard
+      />
+      <Button title="Search" onPress={handleSearchPress} />
+    </View>
+  );
+};
 
 const Upcoming = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
 
-  const getSearchResults = async () => {
+  const getSearchResults = useCallback(async (query) => {
     const apiKey = 'AIzaSyCZPtNrwxU5plviOh-E-o6ajpCCV3EO-gg'; // Use the provided API key
     const cx = 'b42de8df5ac8c4901'; // Use the provided Custom Search Engine ID
-    const query = `news ${searchQuery}`; // news prefix
     const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setResults(data.items.slice(0, 10)); // Taking only the top 10 results
+      setResults(data.items.slice(0, 10)); // top 10 results
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        value={searchQuery}
-        onChangeText={text => setSearchQuery(text)}
-        placeholder="Enter artist name"
-      />
-      <Button title="Search" onPress={getSearchResults} />
-      <FlatList
-        data={results}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            {item.pagemap?.cse_thumbnail?.length > 0 && (
-              <Image
-                style={styles.thumbnail}
-                source={{ uri: item.pagemap.cse_thumbnail[0].src }}
-              />
-            )}
-            <Text style={styles.title} onPress={() => Linking.openURL(item.link)}>
-              {item.title}
-            </Text>
-            <Text style={styles.snippet}>{item.snippet}</Text>
-          </View>
-        )}
-      />
-    </ScrollView>
+    <FlatList
+      data={results}
+      keyExtractor={(item, index) => index.toString()}
+      ListHeaderComponent={<SearchBar onSearch={getSearchResults} />}
+      renderItem={({ item }) => (
+        <View style={styles.card}>
+          {item.pagemap?.cse_thumbnail?.length > 0 && (
+            <Image
+              style={styles.thumbnail}
+              source={{ uri: item.pagemap.cse_thumbnail[0].src }}
+            />
+          )}
+          <Text style={styles.title} onPress={() => Linking.openURL(item.link)}>
+            {item.title}
+          </Text>
+          <Text style={styles.snippet}>{item.snippet}</Text>
+        </View>
+      )}
+      contentContainerStyle={styles.listContentContainer}
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  header: {
     padding: 16,
     paddingTop: 50,
-    backgroundColor: '#f5f5f5', // Light grey background for the entire view
   },
   searchInput: {
     height: 40,
-    borderColor: '#dddddd', // Light border color for the input field
+    borderColor: '#dddddd',
     borderWidth: 1,
-    borderRadius: 5, // Rounded corners for the input field
+    borderRadius: 5,
     marginBottom: 20,
     padding: 10,
-    backgroundColor: '#ffffff', // White background for the input field
+    backgroundColor: '#ffffff',
+  },
+  listContentContainer: {
+    padding: 16,
   },
   card: {
-    backgroundColor: '#ffffff', // White background for the card
-    borderRadius: 8, // Rounded corners for the card
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
     padding: 15,
     marginBottom: 20,
-    shadowColor: '#000', // Shadow for the card
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -82,9 +96,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   thumbnail: {
-    width: '100%', // Full width of the card
-    height: 200, // Fixed height for the thumbnail
-    borderRadius: 8, // Rounded corners for the thumbnail
+    width: '100%',
+    height: 200,
+    borderRadius: 8,
     marginBottom: 10,
   },
   title: {
