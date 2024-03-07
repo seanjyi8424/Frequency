@@ -2,7 +2,6 @@ import { Stack } from 'expo-router';
 import { useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Layout = () => {
     const [fontsLoaded] = useFonts({

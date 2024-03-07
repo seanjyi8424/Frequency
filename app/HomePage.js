@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
-import { useNavigation, Link } from 'expo-router';
+import { useNavigation } from 'expo-router';
 
 const Homepage = () => {
     const navigation = useNavigation();

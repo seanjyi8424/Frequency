@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Stack } from 'expo-router';
 import { View, Text, TextInput, Button, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
 const client_id = '047f8ea696a0445abf64e1738a07ac71';
 const client_secret = 'd02b717f549c4ed29744df3059b7a342';
 global.Buffer = require('buffer').Buffer;
-import { useNavigation } from 'expo-router';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-const Tab = createBottomTabNavigator();
 
 async function getAccessToken() {
     const authUrl = 'https://accounts.spotify.com/api/token';
