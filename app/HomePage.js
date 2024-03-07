@@ -17,7 +17,7 @@ const Homepage = () => {
                     Welcome!
                 </Text>
                 <TouchableOpacity
-                    onPress={() => navigation.replace('inter')}
+                    onPress={() => navigation.replace('TabsRedirect')}
                     style={{
                         backgroundColor: '#AD40AF',
                         padding: 20,

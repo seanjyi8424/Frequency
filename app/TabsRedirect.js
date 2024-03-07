@@ -1,7 +1,7 @@
 import { Redirect } from "expo-router";
 
-const Inter = () => {
+const TabsRedirect = () => {
     return <Redirect href={"/(tabs)/SpotifyRankings"} />;
 };
 
-export default Inter;
+export default TabsRedirect;
