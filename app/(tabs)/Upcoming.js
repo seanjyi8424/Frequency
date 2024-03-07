@@ -8,7 +8,7 @@ const Upcoming = () => {
   const getSearchResults = async () => {
     const apiKey = 'AIzaSyCZPtNrwxU5plviOh-E-o6ajpCCV3EO-gg'; // Use the API key provided
     const cx = 'b42de8df5ac8c4901'; // Use the Custom Search Engine ID provided
-    const query = searchQuery;
+    const query = `news ${searchQuery}`; // news search
     const url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`;
 
     try {
