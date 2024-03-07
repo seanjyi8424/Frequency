@@ -30,7 +30,7 @@ const Homepage = () => {
                         fontSize: 16,
                         color: '#fff'
                     }}>
-                        Spotify Rankings
+                        Enter
                     </Text>
                 </TouchableOpacity>
             </View>
