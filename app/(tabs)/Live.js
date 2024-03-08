@@ -35,6 +35,27 @@ sendMessage = () => {
         }
 };
 
+selectChatroom = (chatroom) => {
+        this.setState({ currentChatroom: chatroom });
+};
+
+leaveChatroom = () => {
+        this.setState({ currentChatroom: null });
+};
+
+renderChatroomButtons() {
+    // Code for renderChatroomButtons here...
+}
+
+renderChatroom() {
+    // Code for renderChatroom here...
+}
+
+
+render() {
+    // Complete render method here...
+}
+
 const styles = StyleSheet.create({
     container: {}
 });
