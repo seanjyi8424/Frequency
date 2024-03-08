@@ -100,9 +100,37 @@ class Live extends Component {
             </View>
         );
     }
+}
 
 const styles = StyleSheet.create({
-    container: {}
+    chatroomSelection: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    chatroomButton: {
+        width: 200,
+        height: 100,
+        margin: 10,
+        borderRadius: 10,
+        overflow: 'hidden',
+    },
+    chatroomButtonImage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    chatroomButtonImageStyle: {
+        borderRadius: 10,
+    },
+    chatroomButtonText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: 5,
+    },
 });
 
 export default Live;
