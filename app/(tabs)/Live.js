@@ -1,105 +1,166 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, ScrollView, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { 
+  Text, 
+  View, 
+  TextInput, 
+  Button, 
+  ScrollView, 
+  TouchableOpacity, 
+  StyleSheet, 
+  ImageBackground,
+  Modal
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 class Live extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: this.props.username,
-            text: '',
-            chatrooms: {
-                'Kanye': [],
-                'Travis Scott': [],
-                'Drake': [],
-                // Add more artists as needed
-            },
-            currentChatroom: null,
-            error: "none",
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: this.props.username || "Anonymous",
+      text: '',
+      messages: {},
+      chatrooms: {
+        'Kanye': [],
+        'Travis Scott': [],
+        'Drake': [],
+      },
+      currentChatroom: null,
+      isAddModalVisible: false,
+      newChatroomName: '',
+      error: "none",
+    };
+  }
+
+  handleTextChange = (text) => {
+    this.setState({ text });
+  };
+
+  sendMessage = () => {
+    const { text, currentChatroom, messages } = this.state;
+    if (text.trim() && currentChatroom) {
+      const newMessage = { username: this.state.username, message: text };
+      const updatedMessages = messages[currentChatroom]
+        ? [...messages[currentChatroom], newMessage]
+        : [newMessage];
+
+      this.setState(prevState => ({
+        messages: {
+          ...prevState.messages,
+          [currentChatroom]: updatedMessages,
+        },
+        text: '',
+      }));
     }
+  };
 
-    handleTextChange = text => {
-        this.setState({ text });
-    };
+  selectChatroom = (chatroom) => {
+    this.setState({ currentChatroom: chatroom });
+  };
 
-    sendMessage = () => {
-        const { text, currentChatroom, chatrooms } = this.state;
-        if (text.trim()) {
-            const updatedChatrooms = { ...chatrooms };
-            updatedChatrooms[currentChatroom].push({ username: this.state.username, message: text });
+  leaveChatroom = () => {
+    this.setState({ currentChatroom: null });
+  };
+  
 
-            this.setState({
-                chatrooms: updatedChatrooms,
-                text: ''
-            });
-        }
-    };
-
-    selectChatroom = (chatroom) => {
-        this.setState({ currentChatroom: chatroom });
-    };
-
-    leaveChatroom = () => {
-        this.setState({ currentChatroom: null });
-    };
-
-    renderChatroomButtons() {
-        const artistImages = {
-            'Artist1': 'https://i.pinimg.com/originals/a9/a7/29/a9a729f26baddd99af9d2cdb9da36961.jpg',
-            'Artist2': 'https://placeimg.com/640/480/any',
-            'Artist3': 'https://placeimg.com/640/480/any',
-            // Add more artist images as needed
-        };
-
-        return Object.keys(this.state.chatrooms).map((chatroom) => (
-            <TouchableOpacity key={chatroom} style={styles.chatroomButton} onPress={() => this.selectChatroom(chatroom)}>
-                <ImageBackground source={{ uri: artistImages[chatroom] }} style={styles.chatroomButtonImage} imageStyle={styles.chatroomButtonImageStyle}>
-                    <Text style={styles.chatroomButtonText}>{chatroom}</Text>
-                </ImageBackground>
-            </TouchableOpacity>
-        ));
+  addNewChatroom = () => {
+    const { newChatroomName, chatrooms } = this.state;
+    if (newChatroomName.trim() && !chatrooms[newChatroomName]) {
+      this.setState(prevState => ({
+        chatrooms: {
+          ...prevState.chatrooms,
+          [newChatroomName]: [],
+        },
+        messages: {
+          ...prevState.messages,
+          [newChatroomName]: [],
+        },
+        newChatroomName: '',
+        isAddModalVisible: false,
+      }));
+    } else {
+      alert('Please enter a unique chatroom name.');
     }
+  };
 
-    renderChatroom() {
-        const { chatrooms, currentChatroom } = this.state;
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <ScrollView style={{ flex: 1 }}>
-                    {chatrooms[currentChatroom].map((msg, index) => (
-                        <View key={index} style={{ padding: 10 }}>
-                            <Text style={{ fontWeight: 'bold' }}>{msg.username}</Text>
-                            <Text>{msg.message}</Text>
-                        </View>
-                    ))}
-                </ScrollView>
-                <View style={{ flexDirection: 'row', padding: 10 }}>
-                    <TextInput
-                        style={{ flex: 1, borderColor: 'gray', borderWidth: 1, marginRight: 10 }}
-                        onChangeText={this.handleTextChange}
-                        value={this.state.text}
-                        placeholder="Type your message here..."
-                    />
-                    <Button title="Send" onPress={this.sendMessage} />
-                    <Button title="Leave" onPress={this.leaveChatroom} />
-                </View>
-            </SafeAreaView>
-        );
-    }
+  renderChatroomButtons() {
+    return Object.keys(this.state.chatrooms).map((chatroom) => (
+      <TouchableOpacity 
+        key={chatroom} 
+        style={styles.chatroomButton} 
+        onPress={() => this.selectChatroom(chatroom)}
+      >
+        <Text style={styles.chatroomButtonText}>{chatroom}</Text>
+      </TouchableOpacity>
+    ));
+  }
 
-    render() {
-        return (
-            <View style={{ flex: 1 }}>
-                {this.state.currentChatroom ? (
-                    this.renderChatroom()
-                ) : (
-                    <View style={styles.chatroomSelection}>
-                        {this.renderChatroomButtons()}
-                    </View>
-                )}
+  renderChatroomView() {
+    const { currentChatroom, messages } = this.state;
+    return (
+      <View style={styles.chatroomContainer}>
+        {/* Leave button */}
+        <Button title="Leave" onPress={this.leaveChatroom} style={styles.leaveButton} />
+  
+        <ScrollView style={styles.messageContainer}>
+          {messages[currentChatroom] && messages[currentChatroom].map((msg, index) => (
+            <View key={index} style={styles.messageBubble}>
+              <Text style={styles.messageUsername}>{msg.username}</Text>
+              <Text>{msg.message}</Text>
             </View>
-        );
-    }
+          ))}
+        </ScrollView>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            value={this.state.text}
+            onChangeText={this.handleTextChange}
+            placeholder="Type a message..."
+          />
+          <Button title="Send" onPress={this.sendMessage} />
+        </View>
+      </View>
+    );
+  }
+  
+
+  render() {
+    const { currentChatroom, isAddModalVisible } = this.state;
+
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isAddModalVisible}
+          onRequestClose={() => {
+            this.setState({ isAddModalVisible: false });
+          }}
+        >
+          <View style={styles.modalView}>
+            <TextInput
+              placeholder="Chatroom Name"
+              value={this.state.newChatroomName}
+              onChangeText={(name) => this.setState({ newChatroomName: name })}
+              style={styles.modalTextInput}
+            />
+            <Button
+              title="Add Chatroom"
+              onPress={this.addNewChatroom}
+            />
+          </View>
+        </Modal>
+
+        {currentChatroom ? (
+          this.renderChatroomView()
+        ) : (
+          <View style={styles.chatroomSelection}>
+            <Button title="Add" onPress={() => this.setState({ isAddModalVisible: true })} />
+            {this.renderChatroomButtons()}
+          </View>
+        )}
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
