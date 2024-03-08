@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 class Live extends Component {
-    render() {
-        return (
-            <View style={styles.container}></View>
-        );
-    }
+    constructor(props) {
+    super(props);
+    this.state = {
+        username: this.props.username,
+        text: '',
+        chatrooms: {
+            'Kanye': [],
+            'Travis Scott': [],
+            'Drake': [],
+        },
+        currentChatroom: null,
+        error: "none",
+    };
+
 }
 
 const styles = StyleSheet.create({
