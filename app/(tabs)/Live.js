@@ -165,34 +165,78 @@ class Live extends Component {
 
 const styles = StyleSheet.create({
     chatroomSelection: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     chatroomButton: {
-        width: 200,
-        height: 100,
-        margin: 10,
-        borderRadius: 10,
-        overflow: 'hidden',
-    },
-    chatroomButtonImage: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    chatroomButtonImageStyle: {
-        borderRadius: 10,
+      width: 200,
+      height: 100,
+      margin: 10,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#e1e1e1', // Example background color
     },
     chatroomButtonText: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        padding: 5,
+      color: 'black',
+      fontSize: 18,
+      fontWeight: 'bold',
     },
-});
+    chatroomContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    messageContainer: {
+      flex: 1,
+      padding: 10,
+    },
+    messageBubble: {
+      backgroundColor: '#f0f0f0', // Example message bubble color
+      padding: 10,
+      borderRadius: 5,
+      marginVertical: 5,
+    },
+    messageUsername: {
+      fontWeight: 'bold',
+    },
+    inputContainer: {
+      flexDirection: 'row',
+      padding: 10,
+    },
+    input: {
+      flex: 1,
+      borderColor: 'gray',
+      borderWidth: 1,
+      marginRight: 10,
+      padding: 10,
+    },
+    modalView: {
+      marginTop: '50%',
+      marginHorizontal: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    modalTextInput: {
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      width: '100%',
+      marginBottom: 20,
+      padding: 10,
+    },
+  });
 
 export default Live;
 
