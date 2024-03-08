@@ -18,6 +18,23 @@ class Live extends Component {
 
 }
 
+handleTextChange = text => {
+        this.setState({ text });
+    };
+
+sendMessage = () => {
+        const { text, currentChatroom, chatrooms } = this.state;
+        if (text.trim()) {
+            const updatedChatrooms = { ...chatrooms };
+            updatedChatrooms[currentChatroom].push({ username: this.state.username, message: text });
+
+            this.setState({
+                chatrooms: updatedChatrooms,
+                text: ''
+            });
+        }
+};
+
 const styles = StyleSheet.create({
     container: {}
 });
