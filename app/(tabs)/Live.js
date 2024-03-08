@@ -1,14 +1,17 @@
-import { Text } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-const Live = () => {
-    return(
-        <SafeAreaView>
-            <Text>
-                Live Page
-            </Text>
-        </SafeAreaView>
-    );
+class Live extends Component {
+    render() {
+        return (
+            <View style={styles.container}></View>
+        );
+    }
 }
 
-export default Live
+const styles = StyleSheet.create({
+    container: {}
+});
+
+export default Live;
+
