@@ -1,4 +1,6 @@
 import React,{ useState } from 'react';
+import { auth } from './firebaseConfig'; // Make sure the path is correct
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
 import Logo from '../assets/images/frequency_logo/logo.js';
@@ -10,7 +12,18 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Register = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigation = useNavigation();
+
+    const handleRegister = async () => {
+        try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        navigation.navigate('Login'); // Navigate to login after registration
+        } catch (error) {
+        console.error(error);
+        }
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center'}}>
