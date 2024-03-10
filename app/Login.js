@@ -1,4 +1,6 @@
 import React,{ useState } from 'react';
+import { auth } from './firebaseConfig'; // Make sure the path is correct
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
 import Logo from '../assets/images/frequency_logo/logo.js';
@@ -10,7 +12,18 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigation = useNavigation();
+
+    const handleLogin = async () => {
+        try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigation.navigate('HomePage');
+        } catch (error) {
+        console.error(error);
+        }
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center'}}>
