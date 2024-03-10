@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { View, ActivityIndicator } from 'react-native';
+import { Redirect } from "expo-router";
 
 const StartPage = () => {
   const [loading, setLoading] = useState(true);

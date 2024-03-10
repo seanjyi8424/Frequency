@@ -1,9 +1,8 @@
+import { Stack } from 'expo-router';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { auth } from './firebaseConfig'; // Ensure this path is correct
 
 import HomePage from './HomePage';
@@ -15,8 +14,6 @@ import Upcoming from './(tabs)/Upcoming'; // Adjust the path as needed
 import Login from './Login';
 import Register from './register';
 
-const Stack = createNativeStackNavigator();
-
 const Layout = () => {
   const [fontsLoaded] = useFonts({
     RMMedium: require('../assets/fonts/Roboto-Medium.ttf'),
@@ -26,7 +23,7 @@ const Layout = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const authUnsubscribe = onAuthStateChanged(getAuth(auth), setUser);
+    const authUnsubscribe = onAuthStateChanged(auth, setUser);
     return authUnsubscribe;
   }, []);
 
@@ -41,8 +38,7 @@ const Layout = () => {
   }
 
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack onReady={onLayoutRootView} screenOptions={{ headerShown: false }}>
         {user ? (
           <>
             <Stack.Screen name="Home" component={HomePage} />
@@ -60,8 +56,7 @@ const Layout = () => {
             {/* Additional authentication screens can be added here */}
           </>
         )}
-      </Stack.Navigator>
-    </NavigationContainer>
+      </Stack>
   );
 };
 
