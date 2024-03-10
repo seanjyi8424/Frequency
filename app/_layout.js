@@ -1,17 +1,21 @@
-import { Stack, useRouting } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebaseConfig';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { auth } from './firebaseConfig'; // Ensure this path is correct
+
 import HomePage from './HomePage';
-import Artists from './(tabs)/Artists';
-import Chatrooms from './(tabs)/Chatrooms';
-import Favorite from './(tabs)/Favorite';
-import Music from './(tabs)/Music';
-import Upcoming from './(tabs)/Upcoming';
+import Artists from './(tabs)/Artists'; // Adjust the path as needed
+import Chatrooms from './(tabs)/Chatrooms'; // Adjust the path as needed
+import Favorite from './(tabs)/Favorite'; // Adjust the path as needed
+import Music from './(tabs)/Music'; // Adjust the path as needed
+import Upcoming from './(tabs)/Upcoming'; // Adjust the path as needed
 import Login from './Login';
 import Register from './register';
+
+const Stack = createNativeStackNavigator();
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -20,47 +24,44 @@ const Layout = () => {
   });
 
   const [user, setUser] = useState(null);
-  const { navigate } = useRouting(); 
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      if (fontsLoaded) {
-        SplashScreen.hideAsync();
-      }
-    });
-
-    return unsubscribe;
-  }, [fontsLoaded]);
-
-  const onLayoutRootView = useCallback(async () => {
-    // This function can be used if you want to perform actions after layout is done
+    const authUnsubscribe = onAuthStateChanged(getAuth(auth), setUser);
+    return authUnsubscribe;
   }, []);
 
-  if (!fontsLoaded || user === undefined) {
-    return null; // Return null while checking authentication status and loading fonts
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded && user) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, user]);
+
+  if (!fontsLoaded) {
+    return null;
   }
 
-  if (!user) {
-    navigate('/Login'); // Navigate to Login if no user is found
-    return null; // Return null to avoid rendering anything else while redirecting
-  }
-
-  // When fonts are loaded and a user is logged in, show the main app
   return (
-    <Stack onLayout={onLayoutRootView} screenOptions={{ headerShown: false }}>
-      {/* Define your Stack.Screen components for tabs and other screens */}
-      <Stack.Screen name="HomePage" component={HomePage} />
-      <Stack.Screen name="Artists" component={Artists} />
-      <Stack.Screen name="Chatrooms" component={Chatrooms} />
-      <Stack.Screen name="Favorite" component={Favorite} />
-      <Stack.Screen name="Music" component={Music} />
-      <Stack.Screen name="Upcoming" component={Upcoming} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
-      {/* Add other screens here as needed */}
-    </Stack>
+    <NavigationContainer onReady={onLayoutRootView}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {user ? (
+          <>
+            <Stack.Screen name="Home" component={HomePage} />
+            <Stack.Screen name="Artists" component={Artists} />
+            <Stack.Screen name="Chatrooms" component={Chatrooms} />
+            <Stack.Screen name="Favorite" component={Favorite} />
+            <Stack.Screen name="Music" component={Music} />
+            <Stack.Screen name="Upcoming" component={Upcoming} />
+            {/* Additional screens for logged in users can be added here */}
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Register" component={Register} />
+            {/* Additional authentication screens can be added here */}
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
