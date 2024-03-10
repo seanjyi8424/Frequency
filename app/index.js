@@ -21,11 +21,7 @@ const StartPage = () => {
     return <ActivityIndicator />; // Or some other loading indicator
   }
 
-  if (!user) {
-    return <Redirect href="/Login" />;
-  } else {
-    return <Redirect href="/(tabs)" />; 
-  }
+  return <Redirect href="/Login" />;
 };
 
 export default StartPage;

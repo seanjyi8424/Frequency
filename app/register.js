@@ -1,5 +1,6 @@
 import React,{ useState } from 'react';
-import { auth } from './firebaseConfig'; // Make sure the path is correct
+import { auth, firebaseConfig } from './firebaseConfig'; // Make sure the path is correct
+import { getDatabase, ref, push } from 'firebase/database';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
@@ -18,10 +19,23 @@ const Register = () => {
 
     const handleRegister = async () => {
         try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        navigation.navigate('Login'); // Navigate to login after registration
+          // Create user with email and password
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+      
+          // Save user data to Realtime Database
+          const db = getDatabase();
+          const usersRef = ref(db, 'users/' + user.uid);
+          await push(usersRef, {
+            email: user.email,
+            // Add any other user data you want to store
+          });
+      
+          // Navigate to "HomePage" after successful registration
+          navigation.navigate('Login');
         } catch (error) {
-        console.error(error);
+          console.error(error);
+          // Handle registration error, display error message, etc.
         }
     };
 
@@ -59,6 +73,9 @@ const Register = () => {
                         placeholder="Email ID"
                         style={{flex: 1, paddingVertical: 0}}
                         keyboardType="email-address" 
+                        value={email}
+                        onChangeText={(text) => setEmail(text)}
+                        
                     />
                 </View>
 
@@ -78,11 +95,13 @@ const Register = () => {
                         placeholder="Password"
                         style={{flex: 1, paddingVertical: 0}}
                         secureTextEntry={true}
+                        value={password}
+                        onChangeText={(text) => setPassword(text)}
                     />
                 </View>
 
                 <TouchableOpacity 
-                    onPress={() => navigation.replace('HomePage')}
+                    onPress={handleRegister}
                     style={{
                         backgroundColor:'#AD40AF',
                         padding:20,

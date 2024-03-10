@@ -14,15 +14,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
     const navigation = useNavigation();
-
+  
     const handleLogin = async () => {
-        try {
+      try {
         await signInWithEmailAndPassword(auth, email, password);
-        navigation.navigate('HomePage');
-        } catch (error) {
+        navigation.replace('HomePage');
+      } catch (error) {
         console.error(error);
-        }
+        setLoginError('Invalid email or password. Please try again.');
+      }
     };
 
     return (
@@ -59,6 +61,8 @@ const Login = () => {
                         placeholder="Email ID"
                         style={{flex: 1, paddingVertical: 0}}
                         keyboardType="email-address" 
+                        value={email}
+                        onChangeText={(text) => setEmail(text)}
                     />
                 </View>
 
@@ -78,13 +82,18 @@ const Login = () => {
                         placeholder="Password"
                         style={{flex: 1, paddingVertical: 0}}
                         secureTextEntry={true}
+                        value={password}
+                        onChangeText={(text) => setPassword(text)}
                     />
                     <TouchableOpacity onPress={() => {}}>
                         <Text style={{fontWeight:'700'}}>Forgot?</Text>
                     </TouchableOpacity>
                 </View>
+                {loginError !== '' && (
+                    <Text style={{ color: 'red', marginBottom: 10 }}>{loginError}</Text>
+                )}
                 <TouchableOpacity
-                    onPress={() => navigation.replace('HomePage')}
+                    onPress={handleLogin}
                     style={{
                         backgroundColor:'#AD40AF',
                         padding:20,
