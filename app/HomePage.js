@@ -2,40 +2,54 @@ import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
 
+const backgroundImage = require('../assets/music4.avif'); // replaceable image
+
 const Homepage = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ paddingHorizontal: 25 }}>
-                <Text style={{
-                    textAlign: 'center',
-                    fontFamily: 'RMMedium',
-                    fontSize: 28, fontWeight: '500',
-                    color: '#333', marginBottom: 30,
-                }}>
-                    Welcome!
-                </Text>
-                <TouchableOpacity
-                    onPress={() => navigation.replace('TabsRedirect')}
-                    style={{
-                        backgroundColor: '#AD40AF',
-                        padding: 20,
-                        borderRadius: 10,
-                        marginBottom: 30
-                    }}>
-                    <Text style={{
-                        textAlign: 'center',
-                        fontWeight: '700',
-                        fontSize: 16,
-                        color: '#fff'
-                    }}>
-                        Enter
-                    </Text>
-                </TouchableOpacity>
-            </View>
+        <SafeAreaView style={styles.container}>
+            <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.backgroundImage}>
+                <View style={styles.contentView}>
+                    <Text style={styles.title}>Discover new tracks,</Text>
+                    <Text style={styles.title}>Save albums and songs you love .</Text>
+                    <Text style={styles.subtitle}>Chat and share your tunes with friends.</Text>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('TabsRedirect')}
+                        style={styles.enterButton}>
+                        <Text style={styles.enterText}>FEEL THE MUSIC</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    backgroundImage: {
+        flex: 1, // The image will fill the entire space of the container
+        width: '100%', // Set width to 100% of the container
+        height: '100%', // Set height to 100% of the container
+    },
+    contentView: {
+        
+    },
+    title: {
+        textAlign: 'center',
+        fontFamily: 'YourFontFamily', 
+    },
+    subtitle: {
+        textAlign: 'center',
+    },
+    enterButton: {
+        backgroundColor: '#AD40AF', 
+    },
+    enterText: {
+        textAlign: 'center',
+    }
+});
 
 export default Homepage;
