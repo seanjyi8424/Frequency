@@ -12,7 +12,7 @@ npx expo start
 
 - [Expo Router: Docs](https://docs.expo.dev/router/introduction/)
 
-##  Firebase procedure
+# Firebase Set-up
 
 install yarn and other necessities
 ```sh
