@@ -7,6 +7,11 @@ Use [`expo-router`](https://docs.expo.dev/router/introduction/) to build native 
 ```sh
 npx expo start
 ```
+if there's an error
+
+```sh
+yarn add expo 
+```
 
 ## 📝 Notes
 
