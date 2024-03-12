@@ -17,14 +17,18 @@ class ComingSoon extends Component {
     this.state = {
       chatrooms: {},
       newChatroomName: '',
+      newChatroomTime: '',
       isAddModalVisible: false,
       timers: {},
+      endedChatrooms: [], // Checks for multiple chatrooms for the banners
     };
   }
 
   addNewChatroom = () => {
-    const { newChatroomName, chatrooms } = this.state;
-    if (newChatroomName.trim() && !chatrooms[newChatroomName]) {
+    const { newChatroomName, chatrooms, newChatroomTime } = this.state;
+    const timeInSeconds = parseInt(newChatroomTime, 10); // conv to int
+
+    if (newChatroomName.trim() && !chatrooms[newChatroomName] && !isNaN(timeInSeconds) && timeInSeconds > 0) {
       const timerId = setInterval(() => this.updateTimer(newChatroomName), 1000);
       this.setState(prevState => ({
         chatrooms: {
@@ -32,37 +36,55 @@ class ComingSoon extends Component {
           [newChatroomName]: [],
         },
         newChatroomName: '',
+        newChatroomTime: '',
         isAddModalVisible: false,
         timers: {
           ...prevState.timers,
           [newChatroomName]: {
-            timeLeft: 3600, 
-            timerId: timerId, 
+            timeLeft: timeInSeconds,
+            timerId: timerId,
           }
-        }
+        },
       }));
     } else {
-      alert('Please enter a unique chatroom name.');
+      alert('Please enter a unique chatroom name and a valid time.');
     }
   };
 
   updateTimer = (chatroomName) => {
     this.setState(prevState => {
       let timeLeft = prevState.timers[chatroomName].timeLeft - 1;
-      if (timeLeft === 0) {
+      if (timeLeft <= 0) {
         clearInterval(prevState.timers[chatroomName].timerId);
-      }
-      return {
-        timers: {
-          ...prevState.timers,
-          [chatroomName]: {
-            ...prevState.timers[chatroomName],
-            timeLeft: timeLeft,
+        const newTimers = { ...prevState.timers };
+        delete newTimers[chatroomName];
+        const newChatrooms = { ...prevState.chatrooms };
+        delete newChatrooms[chatroomName];
+
+        return {
+          chatrooms: newChatrooms,
+          timers: newTimers,
+          endedChatrooms: [...prevState.endedChatrooms, chatroomName],
+        };
+      } else {
+        return {
+          timers: {
+            ...prevState.timers,
+            [chatroomName]: {
+              ...prevState.timers[chatroomName],
+              timeLeft: timeLeft,
+            },
           },
-        },
-      };
+        };
+      }
     });
   };
+
+  componentWillUnmount() {
+    Object.values(this.state.timers).forEach(timer => {
+      clearInterval(timer.timerId);
+    });
+  }
 
   renderChatroomButtons() {
     const { chatrooms, timers } = this.state;
@@ -74,6 +96,16 @@ class ComingSoon extends Component {
         <Text style={styles.chatroomButtonText}>{chatroom}</Text>
         <Text>{timers[chatroom] ? timers[chatroom].timeLeft : 'Loading...'}</Text>
       </TouchableOpacity>
+    ));
+  }
+
+  renderEndedChatroomBanners() {
+    return this.state.endedChatrooms.map((chatroomName, index) => (
+      <View key={index} style={styles.bannerView}>
+        <Text style={styles.bannerText}>
+          Create Live chatroom for {chatroomName}
+        </Text>
+      </View>
     ));
   }
 
@@ -97,6 +129,13 @@ class ComingSoon extends Component {
               onChangeText={(name) => this.setState({ newChatroomName: name })}
               style={styles.modalTextInput}
             />
+            <TextInput
+              placeholder="Time in Seconds"
+              value={this.state.newChatroomTime}
+              onChangeText={(time) => this.setState({ newChatroomTime: time })}
+              keyboardType="numeric"
+              style={styles.modalTextInput}
+            />
             <Button
               title="Add Chatroom"
               onPress={this.addNewChatroom}
@@ -110,6 +149,8 @@ class ComingSoon extends Component {
             {this.renderChatroomButtons()}
           </ScrollView>
         </View>
+
+        {this.renderEndedChatroomBanners()}
       </SafeAreaView>
     );
   }
@@ -128,7 +169,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#e1e1e1', 
+    backgroundColor: '#e1e1e1',
   },
   chatroomButtonText: {
     color: 'black',
@@ -159,7 +200,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 10,
   },
-
+  bannerView: {
+    padding: 10,
+    marginVertical: 5,
+    backgroundColor: 'yellow',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bannerText: {
+    color: 'black',
+    fontWeight: 'bold',
+  },
 });
 
 export default ComingSoon;
