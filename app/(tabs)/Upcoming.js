@@ -5,7 +5,8 @@ const SearchBar = ({ onSearch }) => {
   const [input, setInput] = useState('');
 
   const handleSearchPress = () => {
-    onSearch(`most recent news ${input}`); // news prefix
+    // onSearch(`most recent news ${input}`); // news prefix
+    onSearch(`"${input}" music news OR "latest updates" OR "exclusive interview" OR "album review" OR "new release" OR "live performance" OR "concert tour" OR "behind the scenes" OR "award nomination"`);
   };
 
   return (
