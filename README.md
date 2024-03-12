@@ -7,7 +7,7 @@ Use [`expo-router`](https://docs.expo.dev/router/introduction/) to build native 
 ```sh
 npx expo start
 ```
-if there's an error
+if there's an error (downloads all dependencies)
 
 ```sh
 yarn add expo 
