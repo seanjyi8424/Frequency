@@ -33,22 +33,38 @@ const styles = StyleSheet.create({
         flex: 1, // The image will fill the entire space of the container
         width: '100%', // Set width to 100% of the container
         height: '100%', // Set height to 100% of the container
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     contentView: {
-        
+        paddingHorizontal: 25,
+        alignItems: 'center',      
     },
     title: {
         textAlign: 'center',
         fontFamily: 'YourFontFamily', 
+        fontSize: 28,
+        fontWeight: '600',
+        color: '#800080',
+        marginBottom: 10,
     },
     subtitle: {
         textAlign: 'center',
+        fontSize: 22,
+        color: '#800080',
+        marginBottom: 15,
     },
     enterButton: {
         backgroundColor: '#AD40AF', 
+        padding: 20,
+        borderRadius: 10,
+        marginTop: 30, 
     },
     enterText: {
         textAlign: 'center',
+        fontWeight: '700',
+        fontSize: 16,
+        color: '#fff'
     }
 });
 
