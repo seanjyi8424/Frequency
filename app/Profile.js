@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
-import { auth, database } from './firebaseConfig'; 
+import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
+import { auth, database } from './firebaseConfig'; // Adjust the path as necessary
 import { ref, onValue } from 'firebase/database';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons'; // install @expo/vector-icons
@@ -11,10 +11,10 @@ const Profile = () => {
 
     useEffect(() => {
         const user = auth.currentUser;
-        if (user) { // Ensures there is a user before attempting to fetch their profile
+        if (user) { // Ensure there is a user before attempting to fetch their profile
             setProfileData(previousData => ({
                 ...previousData,
-                email: user.email,
+                email: user.email, // Directly set the email from the user object
             }));
 
             const userProfileRef = ref(database, 'users/' + user.uid);
@@ -41,10 +41,10 @@ const Profile = () => {
             >
                 <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
-            <View>
+            <View style={styles.profileInfo}>
                 <Text>Email: {profileData.email}</Text>
                 <Text>Username: {profileData.username}</Text>
-                {/* Display more profile data here as needed */}
+                {/* You can display more profile data here as needed */}
             </View>
         </SafeAreaView>
     );
