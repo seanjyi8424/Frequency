@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
-import { auth, database } from './firebaseConfig'; // Adjust the path as necessary
+import { auth, database } from './firebaseConfig'; 
 import { ref, onValue } from 'firebase/database';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; // install @expo/vector-icons
 
 const Profile = () => {
     const [profileData, setProfileData] = useState({});
+    const navigation = useNavigation();
 
     useEffect(() => {
         const user = auth.currentUser;
-        if (user) { // Ensure there is a user before attempting to fetch their profile
-            // Directly set the email from the user object
+        if (user) { // Ensures there is a user before attempting to fetch their profile
             setProfileData(previousData => ({
                 ...previousData,
                 email: user.email,
@@ -33,6 +35,12 @@ const Profile = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity
+                onPress={() => navigation.goBack()} // Navigates back to the previous screen
+                style={styles.leaveButton}
+            >
+                <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
             <View>
                 <Text>Email: {profileData.email}</Text>
                 <Text>Username: {profileData.username}</Text>
@@ -41,5 +49,17 @@ const Profile = () => {
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    leaveButton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        padding: 10,
+    },
+    profileInfo: {
+        marginTop: 20, // Adjust spacing based on your design
+    },
+});
 
 export default Profile;
