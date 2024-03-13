@@ -34,16 +34,16 @@ const Profile = () => {
     }, []);
 
     return (
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <SafeAreaView style={{ backgroundColor: '#24292f', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <TouchableOpacity
                 onPress={() => navigation.goBack()} // Navigates back to the previous screen
                 style={styles.leaveButton}
             >
-                <Ionicons name="arrow-back" size={24} color="black" />
+                <Ionicons name="arrow-back" size={24} color="#cf5906" />
             </TouchableOpacity>
             <View style={styles.profileInfo}>
-                <Text>Email: {profileData.email}</Text>
-                <Text>Username: {profileData.username}</Text>
+                <Text style={{color: '#cf5906' }}>Email: {profileData.email}</Text>
+                <Text style={{color: '#cf5906' }}>Username: {profileData.username}</Text>
                 {/* You can display more profile data here as needed */}
             </View>
         </SafeAreaView>
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
     leaveButton: {
         position: 'absolute',
         top: 10,
-        left: 10,
-        padding: 10,
+        left: 20,
+        padding: 20,
+        paddingVertical: 50,
     },
     profileInfo: {
         marginTop: 20, // Adjust spacing based on your design

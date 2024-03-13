@@ -11,6 +11,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <View style={styles.header}>
+      <Text style={styles.title}>Search Music News:</Text>
       <TextInput
         style={styles.searchInput}
         value={input}
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
+    color: '#cf5906',
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,

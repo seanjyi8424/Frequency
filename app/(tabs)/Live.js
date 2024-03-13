@@ -145,8 +145,24 @@ class Live extends Component {
     return (
       <View style={styles.chatroomContainer}>
         {/* Leave button */}
-        <Button title="Leave" onPress={this.leaveChatroom} style={styles.leaveButton} />
-  
+        <TouchableOpacity
+          onPress={this.leaveChatroom}
+          style={{
+              backgroundColor:'#cf5906',
+              padding:20,
+              borderRadius:10,
+              marginBottom:30
+          }}>
+          <Text 
+              style={{
+                  textAlign:'center',
+                  fontWeight:'700',
+                  fontSize:16,
+                  color: '#000',
+              }}>
+              Leave
+          </Text>
+        </TouchableOpacity>
         <ScrollView style={styles.messageContainer}>
           {messages[currentChatroom] && messages[currentChatroom].map((msg, index) => (
             <View key={index} style={styles.messageBubble}>
@@ -173,7 +189,7 @@ class Live extends Component {
     const { currentChatroom, isAddModalVisible } = this.state;
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#24292f', }}>
         <Modal
           animationType="slide"
           transparent={true}
@@ -185,14 +201,29 @@ class Live extends Component {
           <View style={styles.modalView}>
             <TextInput
               placeholder="Chatroom Name"
+              placeholderTextColor={'rgba(128,130,132,255)'}
               value={this.state.newChatroomName}
               onChangeText={(name) => this.setState({ newChatroomName: name })}
               style={styles.modalTextInput}
             />
-            <Button
-              title="Add Chatroom"
+            <TouchableOpacity
               onPress={this.addNewChatroom}
-            />
+              style={{
+                backgroundColor:'#cf5906',
+                padding:20,
+                borderRadius:10,
+                marginBottom:30
+              }}>
+              <Text 
+                style={{
+                    textAlign:'center',
+                    fontWeight:'700',
+                    fontSize:16,
+                    color: '#000',
+                }}>
+                Add Chatroom
+              </Text>
+              </TouchableOpacity>
           </View>
         </Modal>
 
@@ -200,7 +231,24 @@ class Live extends Component {
           this.renderChatroomView()
         ) : (
           <View style={styles.chatroomSelection}>
-            <Button title="Add" onPress={() => this.setState({ isAddModalVisible: true })} />
+            <TouchableOpacity
+              onPress={() => this.setState({ isAddModalVisible: true })}
+              style={{
+                backgroundColor:'#cf5906',
+                padding:20,
+                borderRadius:10,
+                marginBottom:30
+              }}>
+              <Text 
+                style={{
+                    textAlign:'center',
+                    fontWeight:'700',
+                    fontSize:16,
+                    color: '#000',
+                }}>
+                Add
+              </Text>
+            </TouchableOpacity>
             {this.renderChatroomButtons()}
           </View>
         )}
@@ -224,7 +272,7 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#e1e1e1', // Example background color
+      backgroundColor: '#cf5906',
     },
     chatroomButtonText: {
       color: 'black',
@@ -242,7 +290,7 @@ const styles = StyleSheet.create({
       padding: 10,
     },
     messageBubble: {
-      backgroundColor: '#f0f0f0', // Example message bubble color
+      backgroundColor: '#cf5906', // Example message bubble color
       padding: 10,
       borderRadius: 5,
       marginVertical: 5,
@@ -281,9 +329,11 @@ const styles = StyleSheet.create({
       elevation: 5,
     },
     modalTextInput: {
+      backgroundColor: "#666",
       height: 40,
       borderColor: 'gray',
       borderWidth: 1,
+      borderRadius: 5,
       width: '100%',
       marginBottom: 20,
       padding: 10,
