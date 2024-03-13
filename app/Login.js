@@ -1,9 +1,9 @@
 import React,{ useState } from 'react';
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation } from 'expo-router';
 import { auth } from './firebaseConfig'; // Make sure the path is correct
 import { signInWithEmailAndPassword } from 'firebase/auth';
-//import Logo from '../assets/images/frequency_logo/logo2.js';
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from 'expo-router';
+import Logo from '../assets/images/frequency_logo/logo2.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
 import Instagram from '../assets/images/platform_logos/instagram.jsx';
 import Facebook from '../assets/images/platform_logos/facebook.jsx';
@@ -13,17 +13,30 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
     const navigation = useNavigation();
+  
+    const handleLogin = async () => {
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigation.replace('HomePage');
+      } catch (error) {
+        console.error(error);
+        setLoginError('Invalid email or password. Please try again.');
+      }
+    };
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center', backgroundColor: '#24292f'}}>
-            <View style={{ alignItems: 'center' }}>
-                <Image
-                    source={require('../assets/images/frequency.png')} // Directly requiring the new image
-                    style={{ height: 450, width: 450 }}
-                />
-            </View>
             <View style={{paddingHorizontal:25}}>
+                <View style={{ alignItems: 'center' }}>
+                    <Image
+                        source={require('../assets/images/frequency.png')} // Directly requiring the new image
+                        style={{ height: 450, width: 450 }}
+                    />
+                </View>
 
                 <Text style={{
                     fontFamily: 'RMMedium',
@@ -50,6 +63,8 @@ const Login = () => {
                         placeholderTextColor={'rgba(128,130,132,255)'}
                         style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         keyboardType="email-address" 
+                        value={email}
+                        onChangeText={(text) => setEmail(text)}
                     />
                 </View>
 
@@ -70,13 +85,18 @@ const Login = () => {
                         placeholderTextColor={'rgba(128,130,132,255)'}
                         style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         secureTextEntry={true}
+                        value={password}
+                        onChangeText={(text) => setPassword(text)}
                     />
                     <TouchableOpacity onPress={() => {}}>
                         <Text style={{fontWeight:'700', color:'#ff9248'}}>Forgot?</Text>
                     </TouchableOpacity>
                 </View>
+                {loginError !== '' && (
+                    <Text style={{ color: 'red', marginBottom: 10 }}>{loginError}</Text>
+                )}
                 <TouchableOpacity
-                    onPress={() => navigation.replace('HomePage')}
+                    onPress={handleLogin}
                     style={{
                         backgroundColor:'#ff9248',
                         borderColor:'#FFFFFF',
@@ -185,7 +205,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-
