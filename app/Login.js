@@ -1,6 +1,4 @@
 import React,{ useState } from 'react';
-import { auth } from './firebaseConfig'; // Make sure the path is correct
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
 import Logo from '../assets/images/frequency_logo/logo2.js';
@@ -10,39 +8,29 @@ import Facebook from '../assets/images/platform_logos/facebook.jsx';
 import Google from '../assets/images/platform_logos/google.jsx';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Image } from 'react-native';
+
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginError, setLoginError] = useState('');
     const navigation = useNavigation();
-  
-    const handleLogin = async () => {
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        navigation.replace('HomePage');
-      } catch (error) {
-        console.error(error);
-        setLoginError('Invalid email or password. Please try again.');
-      }
-    };
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center', backgroundColor: '#24292f'}}>
+            <View style={{ alignItems: 'center' }}>
+                <Image
+                    source={require('../assets/images/frequency.png')} 
+                    style={{ height: 450, width: 450 }}
+                />
+            </View>
             <View style={{paddingHorizontal:25}}>
-                <View style={{alignItems: 'center'}}>
-                    <Logo
-                        height={200}
-                        width={200}
-                    />
-                </View>
+            
 
                 <Text style={{
                     fontFamily: 'RMMedium',
-                    fontSize:28, fontWeight:'500',
+                    fontSize:35, fontWeight:'500',
                     color:'#8F929C',marginBottom:30,
                     }}>
-                    Sign up
+                    Sign in
                 </Text>
 
                 <View 
@@ -62,8 +50,6 @@ const Login = () => {
                         placeholderTextColor={'rgba(128,130,132,255)'}
                         style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         keyboardType="email-address" 
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
                     />
                 </View>
 
@@ -82,38 +68,34 @@ const Login = () => {
                     <TextInput
                         placeholder="Password"
                         placeholderTextColor={'rgba(128,130,132,255)'}
-                        style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
+                        style={{flex: 1, paddingVertical: 0, color:'#fcc08c'}}
                         secureTextEntry={true}
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
                     />
                     <TouchableOpacity onPress={() => {}}>
-                        <Text style={{fontWeight:'700', color:'#1fcafe'}}>Forgot?</Text>
+                        <Text style={{fontWeight:'700', color:'#fcc08c'}}>Forgot?</Text>
                     </TouchableOpacity>
                 </View>
-                {loginError !== '' && (
-                    <Text style={{ color: 'red', marginBottom: 10 }}>{loginError}</Text>
-                )}
                 <TouchableOpacity
-                    onPress={handleLogin}
+                    onPress={() => navigation.replace('HomePage')}
                     style={{
-                        backgroundColor:'#1fcafe',
-                        borderColor:'#6cd5f5',
-                        borderWidth:2,
-                        padding:20,
-                        borderRadius:10,
-                        marginBottom:30
+                        backgroundColor: '#ff9248', // orange
+                        borderColor: '#cc5500', // lighter orange
+                        borderWidth: 2,
+                        padding: 20,
+                        borderRadius: 10,
+                        marginBottom: 30
                     }}>
                     <Text 
                         style={{
-                            textAlign:'center',
-                            fontWeight:'700',
-                            fontSize:16,
-                            color:'#FFFF'
+                            textAlign: 'center',
+                            fontWeight: '700',
+                            fontSize: 16,
+                            color: '#FFFFFF' // white text 
                         }}>
                         Login
                     </Text>
                 </TouchableOpacity>
+
                 <Text 
                     style={{
                         textAlign:'center',
@@ -131,8 +113,8 @@ const Login = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#6cd5f5',
-                            backgroundColor:'#1fcafe',
+                            borderColor:'#cc5500',
+                            backgroundColor:'#fcc08c',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -144,8 +126,8 @@ const Login = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#6cd5f5',
-                            backgroundColor:'#1fcafe',
+                            borderColor:'#cc5500',
+                            backgroundColor:'#fcc08c',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -157,8 +139,8 @@ const Login = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#6cd5f5',
-                            backgroundColor:'#1fcafe',
+                            borderColor:'#cc5500',
+                            backgroundColor:'#fcc08c',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -170,8 +152,8 @@ const Login = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#6cd5f5',
-                            backgroundColor:'#1fcafe',
+                            borderColor:'#cc5500',
+                            backgroundColor:'#fcc08c',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -191,7 +173,7 @@ const Login = () => {
                     <TouchableOpacity onPress={() => navigation.replace('register')}>
                         <Text 
                             style={{
-                                color:'#1fcafe',
+                                color:'#fcc08c',
                                 fontWeight:'700'
                             }}>
                             Register
@@ -202,5 +184,7 @@ const Login = () => {
         </SafeAreaView>
     );
 };
+
+
 
 export default Login;
