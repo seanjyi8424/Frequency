@@ -20,7 +20,7 @@ class ComingSoon extends Component {
       newChatroomTime: '',
       isAddModalVisible: false,
       timers: {},
-      endedChatrooms: [], // Checks for multiple chatrooms for the banners
+      endedChatrooms: [], 
     };
   }
 
@@ -122,24 +122,26 @@ class ComingSoon extends Component {
             this.setState({ isAddModalVisible: false });
           }}
         >
-          <View style={styles.modalView}>
-            <TextInput
-              placeholder="Chatroom Name"
-              value={this.state.newChatroomName}
-              onChangeText={(name) => this.setState({ newChatroomName: name })}
-              style={styles.modalTextInput}
-            />
-            <TextInput
-              placeholder="Time in Seconds"
-              value={this.state.newChatroomTime}
-              onChangeText={(time) => this.setState({ newChatroomTime: time })}
-              keyboardType="numeric"
-              style={styles.modalTextInput}
-            />
-            <Button
-              title="Add Chatroom"
-              onPress={this.addNewChatroom}
-            />
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <TextInput
+                placeholder="Chatroom Name"
+                value={this.state.newChatroomName}
+                onChangeText={(name) => this.setState({ newChatroomName: name })}
+                style={styles.modalTextInput}
+              />
+              <TextInput
+                placeholder="Time in Seconds"
+                value={this.state.newChatroomTime}
+                onChangeText={(time) => this.setState({ newChatroomTime: time })}
+                keyboardType="numeric"
+                style={styles.modalTextInput}
+              />
+              <Button
+                title="Add Chatroom"
+                onPress={this.addNewChatroom}
+              />
+            </View>
           </View>
         </Modal>
 
@@ -176,9 +178,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+  },
   modalView: {
-    marginTop: '50%',
-    marginHorizontal: 20,
+    width: '80%', 
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
