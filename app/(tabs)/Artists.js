@@ -93,7 +93,8 @@ const Artists = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-      backgroundColor: '#24292f',
+    flex:1,
+    backgroundColor: '#24292f',
   },
   title: {
     color: '#cf5906',
