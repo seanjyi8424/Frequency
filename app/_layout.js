@@ -13,6 +13,7 @@ import Music from './(tabs)/Music'; // Adjust the path as needed
 import Upcoming from './(tabs)/Upcoming'; // Adjust the path as needed
 import Login from './Login';
 import Register from './register';
+import Profile from './Profile';
 
 const Layout = () => {
   const [fontsLoaded] = useFonts({
@@ -48,6 +49,7 @@ const Layout = () => {
             <Stack.Screen name="Music" component={Music} />
             <Stack.Screen name="Upcoming" component={Upcoming} />
             {/* Additional screens for logged in users can be added here */}
+            <Stack.Screen name="Profile" component={Profile} />
           </>
         ) : (
           <>
