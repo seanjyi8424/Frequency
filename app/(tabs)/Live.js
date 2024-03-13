@@ -11,6 +11,10 @@ import {
   Modal
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { auth, database } from '../firebaseConfig'; // 
+import { ref, onValue } from 'firebase/database';
+
+
 
 class Live extends Component {
   constructor(props) {
@@ -29,6 +33,19 @@ class Live extends Component {
       newChatroomName: '',
       error: "none",
     };
+  }
+
+  componentDidMount() {
+    // Fetch the current user's email after the component has mounted
+    const user = auth.currentUser;
+    if (user) {
+      // Set the email as the username
+      this.setState({ username: user.email });
+    } else {
+      // If there's no user, handle it appropriately, maybe navigate to the login screen
+      console.log('No authenticated user, navigate to login');
+      // this.props.navigation.navigate('Login'); // Uncomment if you want to navigate to Login
+    }
   }
 
   handleTextChange = (text) => {
