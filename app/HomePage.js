@@ -10,7 +10,7 @@ const Homepage = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.backgroundImage}>
-                <View style={styles.overlay}> {/* Adding an overlay to ensure text readability */}
+                <View style={styles.overlay}>
                     <View style={styles.contentView}>
                         <Text style={styles.title}>Explore Fresh Beats,</Text>
                         <Text style={styles.title}>Curate Your Music Collections.</Text>
