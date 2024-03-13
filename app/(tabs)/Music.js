@@ -82,7 +82,7 @@ const Music = () => {
   const moreSongs = topSongsOfTheWeek.slice(3);
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    <ScrollView style={{backgroundColor: '#24292f'}} contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
         <Text style={styles.title}>Top Songs of the Week</Text>
         <View style={styles.sectionContainer}>
@@ -114,11 +114,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   container: {
+    color: '#cf5906',
     flex: 1,
     paddingHorizontal: 10,
-    paddingTop: 10,
+    paddingTop: 20,
   },
   title: {
+    color: '#cf5906',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   subtitle: {
+    color: '#cf5906',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -148,6 +151,7 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     margin: 10,
+    marginBottom: 40,
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -159,20 +163,20 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   nameContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#cf5906',
     width: '100%',
     padding: 5,
     alignItems: 'center',
   },
   songName: {
     textAlign: 'center',
-    color: 'black',
+    color: '#24292f',
     fontSize: 16,
     fontWeight: 'bold',
   },
   artistName: {
     textAlign: 'center',
-    color: 'gray',
+    color: '#24292f',
     fontSize: 14,
   },
 });

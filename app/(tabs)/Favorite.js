@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 const client_id = '047f8ea696a0445abf64e1738a07ac71';
 const client_secret = 'd02b717f549c4ed29744df3059b7a342';
 global.Buffer = require('buffer').Buffer;
@@ -73,26 +74,44 @@ const SpotifyRanking = () => {
 
     return (
         //Top album names and covers
-        <View
+        <SafeAreaView
             style={{
-                marginTop: 75,
-                marginRight: 10,
+                flex: 1,
+                backgroundColor: '#24292f',
+                marginBottom: -40,
             }}>
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginBottom: 10, marginLeft: 10,}}>Search Spotify Tracks:</Text>
+            <Text style={{color: '#cf5906', fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10, marginLeft: 10,}}>Search Spotify Tracks:</Text>
             <TextInput
-                style={{height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10, paddingHorizontal: 10, marginLeft: 10,}}
+                style={{height: 40, backgroundColor: '#50575c', borderColor: 'gray', borderRadius: 5, borderWidth: 1, marginBottom: 10, paddingHorizontal: 10, marginLeft: 10,}}
+                placeholderTextColor={'rgba(128,130,132,255)'}
+                borderColor={'rgba(128,130,132,255)'}
                 placeholder="Enter track name"
                 value={searchQuery}
                 onChangeText={setSearchQuery}
             />
-            <Button title="Search" onPress={handleSearch}/>
+            <TouchableOpacity
+                onPress={handleSearch}
+                style = {{
+                backgroundColor: '#cf5906',
+                padding:13,
+                borderRadius:5,
+                }}>
+                <Text
+                    style={{
+                        textAlign:'center',
+                        color:'#FFFF'
+                    }}
+                >
+                    Search
+                </Text>
+            </TouchableOpacity>
 
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10, marginRight: 10, marginLeft: 10,}}>Selected Tracks:</Text>
+            <Text style={{color: '#cf5906', fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10, marginRight: 10, marginLeft: 10,}}>Selected Tracks:</Text>
             <FlatList
                 data={selectedTracks}
                 keyExtractor={(item) => item.id}
                 renderItem={({item}) => (
-                    <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginRight: 20, marginLeft: 10,}}>
+                    <View style={{borderRadius: 5, backgroundColor: '#cf5906', flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginRight: 20, marginLeft: 10,}}>
                         <Image
                             source={{uri: item.album.images[0].url}}
                             style={{width: 50, height: 50, marginRight: 10}}
@@ -102,13 +121,13 @@ const SpotifyRanking = () => {
                 )}
             />
 
-            <Text style={{fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10, marginRight: 10, marginLeft: 10,}}>Search Results:</Text>
+            <Text style={{color: '#cf5906', fontSize: 20, fontWeight: 'bold', marginTop: 20, marginBottom: 10, marginRight: 10, marginLeft: 10,}}>Search Results:</Text>
             <FlatList
                 data={searchResults}
                 keyExtractor={(item) => item.id}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => handleTrackSelection(item)}>
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginRight: 20, marginLeft: 10,}}>
+                        <View style={{borderRadius: 5, backgroundColor: '#cf5906', flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginRight: 20, marginLeft: 10,}}>
                             <Image
                                 source={{uri: item.album.images[0].url}}
                                 style={{width: 50, height: 50, marginRight: 10}}
@@ -118,7 +137,7 @@ const SpotifyRanking = () => {
                     </TouchableOpacity>
                 )}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 export default SpotifyRanking;
