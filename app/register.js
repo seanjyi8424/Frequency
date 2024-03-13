@@ -4,13 +4,13 @@ import { getDatabase, ref, push } from 'firebase/database';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
-import Logo from '../assets/images/frequency_logo/logo2.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
 import Instagram from '../assets/images/platform_logos/instagram.jsx';
 import Facebook from '../assets/images/platform_logos/facebook.jsx';
 import Google from '../assets/images/platform_logos/google.jsx';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Image } from 'react-native';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -43,9 +43,9 @@ const Register = () => {
         <SafeAreaView style={{ flex: 1, justifyContent:'center', backgroundColor: '#24292f'}}>
             <View style={{paddingHorizontal:25}}>
                 <View style={{alignItems: 'center'}}>
-                    <Logo
-                        height={200}
-                        width={200}
+                    <Image
+                        source={require('../assets/images/frequency.png')} // Directly requiring the new image
+                        style={{ height: 450, width: 450 }}
                     />
                 </View>
 
@@ -105,8 +105,8 @@ const Register = () => {
                 <TouchableOpacity 
                     onPress={handleRegister}
                     style={{
-                        backgroundColor:'#1fcafe',
-                        borderColor:'#6cd5f5',
+                        backgroundColor:'#ff9248',
+                        borderColor:'#FFFFFF',
                         borderWidth:2,
                         padding:20,
                         borderRadius:10,
@@ -117,7 +117,7 @@ const Register = () => {
                             textAlign:'center',
                             fontWeight:'700',
                             fontSize:16,
-                            color:'#fff'
+                            color:'#FFFF'
                         }}>
                         Register
                     </Text>
@@ -139,12 +139,12 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            backgroundColor:'#1fcafe',
-                            borderColor:'#6cd5f5',
+                            borderColor:'#FFFFFF',
+                            backgroundColor:'#ff9248',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
-                            paddingVertical:10
+                            paddingVertical:10,
                         }}>
                         <Facebook height={24} width={24} />
                     </TouchableOpacity>
@@ -152,12 +152,12 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            backgroundColor:'#1fcafe',
-                            borderColor:'#6cd5f5',
+                            borderColor:'#FFFFFF',
+                            backgroundColor:'#ff9248',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
-                            paddingVertical:10
+                            paddingVertical:10,
                         }}>
                         <Google height={24} width={24} />
                     </TouchableOpacity>                    
@@ -165,12 +165,12 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            backgroundColor:'#1fcafe',
-                            borderColor:'#6cd5f5',
+                            borderColor:'#FFFFFF',
+                            backgroundColor:'#ff9248',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
-                            paddingVertical:10
+                            paddingVertical:10,
                         }}>
                         <Instagram height={24} width={24} />
                     </TouchableOpacity>
@@ -178,12 +178,12 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            backgroundColor:'#1fcafe',
-                            borderColor:'#6cd5f5',
+                            borderColor:'#FFFFFF',
+                            backgroundColor:'#ff9248',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
-                            paddingVertical:10
+                            paddingVertical:10,
                         }}>
                         <Twitter height={24} width={24} />
                     </TouchableOpacity>
@@ -199,7 +199,7 @@ const Register = () => {
                     <TouchableOpacity onPress={() => navigation.replace('index')}>
                         <Text 
                             style={{
-                                color:'#1fcafe',
+                                color:'#ff9248',
                                 fontWeight:'700'
                             }}>
                             Login

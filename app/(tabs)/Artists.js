@@ -93,12 +93,14 @@ const Artists = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-      flex: 1, 
+      backgroundColor: '#24292f',
   },
   title: {
+    color: '#cf5906',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginTop: 7,
     marginBottom: 10,
   },
   grid: {
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover', // image covers the square without stretching
   },
   nameContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#cf5906',
     width: '100%',
     padding: 5,
     alignItems: 'center', //  text is centered within the name container

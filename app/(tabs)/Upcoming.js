@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, TextInput, Button, FlatList, Text, Linking, StyleSheet, Image } from 'react-native';
+import { View, TextInput, FlatList, Text, Linking, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 const SearchBar = ({ onSearch }) => {
   const [input, setInput] = useState('');
@@ -15,11 +15,28 @@ const SearchBar = ({ onSearch }) => {
         style={styles.searchInput}
         value={input}
         onChangeText={setInput}
+        placeholderTextColor={'rgba(128,130,132,255)'}
+        borderColor={'rgba(128,130,132,255)'}
         placeholder="Enter artist name"
         returnKeyType="search"
         onSubmitEditing={handleSearchPress} // Trigger the search when the user submits the keyboard
       />
-      <Button title="Search" onPress={handleSearchPress} />
+      <TouchableOpacity
+        onPress={handleSearchPress}
+        style = {{
+          backgroundColor: '#cf5906',
+          padding:13,
+          borderRadius:5,
+        }}>
+        <Text
+          style={{
+            textAlign:'center',
+            color:'#FFFF'
+          }}
+        >
+          Search
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -43,6 +60,7 @@ const Upcoming = () => {
 
   return (
     <FlatList
+      style={{backgroundColor: '#24292f'}}
       data={results}
       keyExtractor={(item, index) => index.toString()}
       ListHeaderComponent={<SearchBar onSearch={getSearchResults} />}
@@ -77,13 +95,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
     padding: 10,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#50575c',
   },
   listContentContainer: {
     padding: 16,
   },
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#cf5906',
     borderRadius: 8,
     padding: 15,
     marginBottom: 20,

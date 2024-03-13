@@ -8,7 +8,7 @@ const Homepage = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.backgroundImage}>
                 <View style={styles.overlay}>
                     <View style={styles.contentView}>
@@ -23,7 +23,7 @@ const Homepage = () => {
                     </View>
                 </View>
             </ImageBackground>
-        </SafeAreaView>
+        </View>
     );
 };
 

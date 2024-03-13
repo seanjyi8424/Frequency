@@ -4,7 +4,7 @@ import { Ionicons, Fontisto, MaterialCommunityIcons, MaterialIcons } from '@expo
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs screenOptions={{ headerShown: false, tabBarStyle:{backgroundColor: '#1C1F22', borderTopWidth: 2, borderTopColor: '#202427'}, tabBarActiveTintColor: '#cf5906' }}>
         <Tabs.Screen name ="Chatrooms" 
           options={{ 
             headerShown: true, 
@@ -36,7 +36,7 @@ export default function TabLayout() {
         <Tabs.Screen 
         name="Artists" 
         options={{
-          title: 'Music',
+          title: 'Artists',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="microphone-variant" color={color} size={24} />
           ),
