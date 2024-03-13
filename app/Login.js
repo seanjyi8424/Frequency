@@ -1,6 +1,8 @@
 import React,{ useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
+import { auth } from './firebaseConfig'; // Make sure the path is correct
+import { signInWithEmailAndPassword } from 'firebase/auth';
 //import Logo from '../assets/images/frequency_logo/logo2.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
 import Instagram from '../assets/images/platform_logos/instagram.jsx';
