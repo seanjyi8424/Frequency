@@ -23,6 +23,13 @@ class ComingSoon extends Component {
       endedChatrooms: [], 
     };
   }
+  removeEndedChatroom = (chatroomName) => {
+    this.setState(prevState => ({
+      endedChatrooms: prevState.endedChatrooms.filter(name => name !== chatroomName),
+    }));
+  };
+
+
 
   addNewChatroom = () => {
     const { newChatroomName, chatrooms, newChatroomTime } = this.state;
@@ -101,11 +108,11 @@ class ComingSoon extends Component {
 
   renderEndedChatroomBanners() {
     return this.state.endedChatrooms.map((chatroomName, index) => (
-      <View key={index} style={styles.bannerView}>
+      <TouchableOpacity key={index} style={styles.bannerView} onPress={() => this.removeEndedChatroom(chatroomName)}>
         <Text style={styles.bannerText}>
-          Create Live chatroom for {chatroomName}
+          {`Create Live chatroom for ${chatroomName}`}
         </Text>
-      </View>
+      </TouchableOpacity>
     ));
   }
 
