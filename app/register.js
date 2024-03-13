@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
-import Logo from '../assets/images/frequency_logo/logo.js';
+import Logo from '../assets/images/frequency_logo/logo2.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
 import Instagram from '../assets/images/platform_logos/instagram.jsx';
 import Facebook from '../assets/images/platform_logos/facebook.jsx';
@@ -13,7 +13,7 @@ const Register = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={{ flex: 1, justifyContent:'center'}}>
+        <SafeAreaView style={{ flex: 1, justifyContent:'center', backgroundColor: '#24292f'}}>
             <View style={{paddingHorizontal:25}}>
                 <View style={{alignItems: 'center'}}>
                     <Logo
@@ -25,7 +25,7 @@ const Register = () => {
                 <Text style={{
                     fontFamily: 'RMMedium',
                     fontSize:28, fontWeight:'500',
-                    color:'#333',marginBottom:30,
+                    color:'#8F929C',marginBottom:30,
                     }}>
                     Register
                 </Text>
@@ -41,10 +41,11 @@ const Register = () => {
                     <MaterialIcons 
                         name="alternate-email" 
                         size={20} color="#666" 
-                        style={{marginRight: 5}}/>
+                        style={{marginRight: 5, color:'rgba(128,130,132,255)'}}/>
                     <TextInput
                         placeholder="Email ID"
-                        style={{flex: 1, paddingVertical: 0}}
+                        placeholderTextColor={'rgba(128,130,132,255)'}
+                        style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         keyboardType="email-address" 
                     />
                 </View>
@@ -60,10 +61,11 @@ const Register = () => {
                     <Ionicons 
                         name="lock-closed-outline"
                         size={20} color="#666" 
-                        style={{marginRight: 5}}/>
+                        style={{marginRight: 5, color:'rgba(128,130,132,255)'}}/>
                     <TextInput
                         placeholder="Password"
-                        style={{flex: 1, paddingVertical: 0}}
+                        placeholderTextColor={'rgba(128,130,132,255)'}
+                        style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         secureTextEntry={true}
                     />
                 </View>
@@ -71,7 +73,9 @@ const Register = () => {
                 <TouchableOpacity 
                     onPress={() => navigation.replace('HomePage')}
                     style={{
-                        backgroundColor:'#AD40AF',
+                        backgroundColor:'#1fcafe',
+                        borderColor:'#6cd5f5',
+                        borderWidth:2,
                         padding:20,
                         borderRadius:10,
                         marginBottom:30
@@ -89,7 +93,7 @@ const Register = () => {
                 <Text 
                     style={{
                         textAlign:'center',
-                        color:'#666',
+                        color:'rgba(153,157,160,255)',
                         marginBottom:30
                     }}>
                     Or, register with...
@@ -103,7 +107,8 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#ddd',
+                            backgroundColor:'#1fcafe',
+                            borderColor:'#6cd5f5',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -115,7 +120,8 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#ddd',
+                            backgroundColor:'#1fcafe',
+                            borderColor:'#6cd5f5',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -127,7 +133,8 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#ddd',
+                            backgroundColor:'#1fcafe',
+                            borderColor:'#6cd5f5',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -139,7 +146,8 @@ const Register = () => {
                     <TouchableOpacity 
                         onPress={() => {}} 
                         style={{
-                            borderColor:'#ddd',
+                            backgroundColor:'#1fcafe',
+                            borderColor:'#6cd5f5',
                             borderWidth:2,
                             borderRadius:10,
                             paddingHorizontal:30,
@@ -155,11 +163,11 @@ const Register = () => {
                         justifyContent:'center',
                         marginBottom:30
                     }}>
-                    <Text>Already Registered? </Text>
+                    <Text style={{color:'rgba(153,157,160,255)',}}>Already Registered? </Text>
                     <TouchableOpacity onPress={() => navigation.replace('index')}>
                         <Text 
                             style={{
-                                color:'#AD40AF',
+                                color:'#1fcafe',
                                 fontWeight:'700'
                             }}>
                             Login

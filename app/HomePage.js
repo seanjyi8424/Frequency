@@ -8,11 +8,11 @@ const Homepage = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.backgroundImage}>
                 <View style={styles.contentView}>
                     <Text style={styles.title}>Discover new tracks,</Text>
-                    <Text style={styles.title}>Save albums and songs you love .</Text>
+                    <Text style={styles.title}>Save albums and songs you love.</Text>
                     <Text style={styles.subtitle}>Chat and share your tunes with friends.</Text>
                     <TouchableOpacity
                         onPress={() => navigation.replace('TabsRedirect')}
@@ -21,7 +21,7 @@ const Homepage = () => {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -45,17 +45,17 @@ const styles = StyleSheet.create({
         fontFamily: 'YourFontFamily', 
         fontSize: 28,
         fontWeight: '600',
-        color: '#800080',
+        color: '#0700fb',
         marginBottom: 10,
     },
     subtitle: {
         textAlign: 'center',
         fontSize: 22,
-        color: '#800080',
+        color: '#0700fb',
         marginBottom: 15,
     },
     enterButton: {
-        backgroundColor: '#AD40AF', 
+        backgroundColor: '#0700fb', 
         padding: 20,
         borderRadius: 10,
         marginTop: 30, 
