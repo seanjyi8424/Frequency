@@ -8,7 +8,8 @@ import {
   TouchableOpacity, 
   StyleSheet, 
   ImageBackground,
-  Modal
+  Modal,
+  Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { auth, database } from '../firebaseConfig';
@@ -256,6 +257,8 @@ class Live extends Component {
   }
 }
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     chatroomSelection: {
       flex: 1,
@@ -307,9 +310,12 @@ const styles = StyleSheet.create({
       padding: 10,
     },
     modalView: {
-      marginTop: '50%',
-      marginHorizontal: 20,
-      backgroundColor: '#24292f',
+      position: 'absolute', // Use absolute positioning
+      top: height / 4, // Position the modal at 1/4th from the top of the screen
+      left: width / 10, // Center the modal with some margin from the left
+      width: '80%', // Use 80% of screen width for the modal
+      minHeight: 200, // Minimum height for the modal
+      backgroundColor: 'white',
       borderRadius: 20,
       padding: 35,
       alignItems: 'center',
