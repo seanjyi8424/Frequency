@@ -19,9 +19,9 @@ export default function ChatRooms() {
         style={styles.profileButton}
         onPress={() => navigation.navigate('Profile')}
       >
-        <Ionicons name="person-circle" size={30} color="#000" /> {/* Adjust icon name, size, and color as needed */}
+        <Ionicons name="person-circle" size={30} color="#8F929C"/>
       </TouchableOpacity>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle:{backgroundColor: '#090A0C', borderTopWidth: 2, borderTopColor: '#202427'}, tabBarActiveTintColor: '#cf5906' }}>
         <Tab.Screen name="Live" component={Live} />
         <Tab.Screen name="ComingSoon" component={ComingSoon} />
       </Tab.Navigator>

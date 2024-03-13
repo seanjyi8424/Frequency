@@ -120,7 +120,7 @@ class ComingSoon extends Component {
     const { isAddModalVisible } = this.state;
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#24292f'}}>
         <Modal
           animationType="slide"
           transparent={true}
@@ -133,27 +133,60 @@ class ComingSoon extends Component {
             <View style={styles.modalView}>
               <TextInput
                 placeholder="Chatroom Name"
+                placeholderTextColor={'rgba(128,130,132,255)'}
                 value={this.state.newChatroomName}
                 onChangeText={(name) => this.setState({ newChatroomName: name })}
                 style={styles.modalTextInput}
               />
               <TextInput
                 placeholder="Time in Seconds"
+                placeholderTextColor={'rgba(128,130,132,255)'}
                 value={this.state.newChatroomTime}
                 onChangeText={(time) => this.setState({ newChatroomTime: time })}
                 keyboardType="numeric"
                 style={styles.modalTextInput}
               />
-              <Button
-                title="Add Chatroom"
+              <TouchableOpacity
                 onPress={this.addNewChatroom}
-              />
+                style={{
+                  backgroundColor:'#cf5906',
+                  padding:20,
+                  borderRadius:10,
+                  marginBottom:30
+                }}>
+                <Text 
+                  style={{
+                    textAlign:'center',
+                    fontWeight:'700',
+                    fontSize:16,
+                    color: '#000',
+                  }}>
+                  Add Chatroom
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
 
         <View style={styles.chatroomSelection}>
-          <Button title="Add" onPress={() => this.setState({ isAddModalVisible: true })} />
+          <TouchableOpacity
+            onPress={() => this.setState({ isAddModalVisible: true })}
+            style={{
+              backgroundColor:'#cf5906',
+              padding:20,
+              borderRadius:10,
+              marginBottom:30
+            }}>
+              <Text 
+                style={{
+                    textAlign:'center',
+                    fontWeight:'700',
+                    fontSize:16,
+                    color: '#000',
+                }}>
+                Add
+              </Text>
+            </TouchableOpacity>
           <ScrollView>
             {this.renderChatroomButtons()}
           </ScrollView>
@@ -178,7 +211,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#cf5906',
   },
   chatroomButtonText: {
     color: 'black',
@@ -193,7 +226,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: '80%', 
-    backgroundColor: 'white',
+    backgroundColor: '#24292f',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -207,6 +240,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalTextInput: {
+    backgroundColor: "#666",
+    borderRadius: 5,
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
