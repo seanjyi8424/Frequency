@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, Linking } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, Linking, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const client_id = '047f8ea696a0445abf64e1738a07ac71'; //change this to test on your own spotify dev account
@@ -29,7 +29,6 @@ async function getAccessToken() {
     }
 }
 
-//getTopSongsOfTheWeek(): retrieves top tracks from Spotify currated playlist.
 async function getTopSongsOfTheWeek(accessToken) {
     const topSongsUrl = 'https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?limit=50'; //top 50
     try {
@@ -51,7 +50,7 @@ async function getTopSongsOfTheWeek(accessToken) {
     }
 }
 
-const SongGridItem = ({song}) => {
+const SongGridItem = ({ song }) => {
   const handlePress = () => {
     const spotifyUrl = `https://open.spotify.com/track/${song.spotifyId}`;
     Linking.openURL(spotifyUrl);
@@ -80,45 +79,51 @@ const Music = () => {
       fetchData();
   }, []);
 
-  const top3Songs = topSongsOfTheWeek.slice(0, 3); //Get the top 3 songs
-  const moreSongs = topSongsOfTheWeek.slice(3); //Get the rest of the songs
+  const moreSongs = topSongsOfTheWeek.slice(3);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.container}>
         <Text style={styles.title}>Top Songs of the Week</Text>
         <View style={styles.sectionContainer}>
-            <Text style={styles.subtitle}>Top 3 Songs:</Text>
-            <View style={styles.top3Container}>
-                {top3Songs.map((song, index) => (
-                    <SongGridItem key={index} song={song}/>
-                ))}
-            </View>
+          <Text style={styles.subtitle}>Top 3 Songs:</Text>
+          <View style={styles.top3Container}>
+            {topSongsOfTheWeek.slice(0, 3).map((song, index) => (
+              <SongGridItem key={index} song={song}/>
+            ))}
+          </View>
         </View>
         <View style={styles.separator}/>
         <View style={styles.sectionContainer}>
-            <Text style={styles.subtitle}>More Songs:</Text>
-            <FlatList
+          <Text style={styles.subtitle}>More Songs:</Text>
+          <FlatList
             data={moreSongs}
-            renderItem={({ item }) => <SongGridItem song={item}/>}
+            renderItem={({item}) => <SongGridItem song={item}/>}
             keyExtractor={(item) => item.name}
             numColumns={2}
-            contentContainerStyle={styles.moreSongsContainer}
-            />
+            contentContainerStyle={styles.flatlistContainer}
+          />
         </View>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 };
 
-//StyleSheet
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1, 
+  scrollViewContent: {
+    flexGrow: 1,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 10,
+    paddingTop: 10,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 10,
+    marginTop: 20
   },
   subtitle: {
     fontSize: 16,
@@ -137,10 +142,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginBottom: 10,
   },
-  moreSongsContainer: {
-    paddingHorizontal: 10,
-    flexGrow: 1,
-    justifyContent: 'flex-start',
+  flatlistContainer: {
+    paddingBottom: 20,
   },
   gridItem: {
     flex: 1,
@@ -172,6 +175,6 @@ const styles = StyleSheet.create({
     color: 'gray',
     fontSize: 14,
   },
-});  
+});
 
 export default Music;
