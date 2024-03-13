@@ -35,3 +35,11 @@ if it doesn't work, do:
 ```sh
 yarn install 
 ```
+
+# For functionality sake, 
+
+```sh
+npx install @expo/vector-icons
+```
+
+
