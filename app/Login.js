@@ -33,7 +33,8 @@ const Login = () => {
                 <View style={{ alignItems: 'center' }}>
                     <Image
                         source={require('../assets/images/frequency.png')} // Directly requiring the new image
-                        style={{ height: 450, width: 450 }}
+                        style={{ height: 325, width: 450 }}
+                        resizeMode="contain"
                     />
                 </View>
 

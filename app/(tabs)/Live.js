@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
       left: width / 10, // Center the modal with some margin from the left
       width: '80%', // Use 80% of screen width for the modal
       minHeight: 200, // Minimum height for the modal
-      backgroundColor: 'white',
+      backgroundColor: '#323941',
       borderRadius: 20,
       padding: 35,
       alignItems: 'center',
