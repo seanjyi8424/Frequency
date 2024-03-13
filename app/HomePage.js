@@ -2,28 +2,26 @@ import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import { useNavigation } from 'expo-router';
 
-const backgroundImage = require('../assets/images/concert.jpeg'); // New image for backdrop
+const backgroundImage = require('../assets/images/music4.avif'); // replaceable image
 
 const Homepage = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.backgroundImage}>
-                <View style={styles.overlay}> {/* Adding an overlay to ensure text readability */}
-                    <View style={styles.contentView}>
-                        <Text style={styles.title}>Explore Fresh Beats,</Text>
-                        <Text style={styles.title}>Curate Your Music Collections.</Text>
-                        <Text style={styles.subtitle}>Connect and vibe with your music community.</Text>
-                        <TouchableOpacity
-                            onPress={() => navigation.replace('TabsRedirect')}
-                            style={styles.enterButton}>
-                            <Text style={styles.enterText}>DIVE INTO THE SOUND</Text>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.contentView}>
+                    <Text style={styles.title}>Discover new tracks,</Text>
+                    <Text style={styles.title}>Save albums and songs you love.</Text>
+                    <Text style={styles.subtitle}>Chat and share your tunes with friends.</Text>
+                    <TouchableOpacity
+                        onPress={() => navigation.replace('TabsRedirect')}
+                        style={styles.enterButton}>
+                        <Text style={styles.enterText}>FEEL THE MUSIC</Text>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -32,45 +30,41 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     backgroundImage: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-    },
-    overlay: {
-        flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.45)', // Overlay color to make the text more legible
+        flex: 1, // The image will fill the entire space of the container
+        width: '100%', // Set width to 100% of the container
+        height: '100%', // Set height to 100% of the container
         justifyContent: 'center',
         alignItems: 'center',
     },
     contentView: {
-        paddingHorizontal: 30,
+        paddingHorizontal: 25,
         alignItems: 'center',      
     },
     title: {
         textAlign: 'center',
-        fontFamily: 'AvenirNext-DemiBold', // Professional-looking font
-        fontSize: 32, // Larger font size
-        color: '#FFFFFF',
-        marginBottom: 12,
+        fontFamily: 'YourFontFamily', 
+        fontSize: 28,
+        fontWeight: '600',
+        color: '#0700fb',
+        marginBottom: 10,
     },
     subtitle: {
         textAlign: 'center',
-        fontFamily: 'AvenirNext-Regular',
-        fontSize: 24, // Slightly larger subtitle
-        color: '#FFFFFF',
-        marginBottom: 20,
+        fontSize: 22,
+        color: '#0700fb',
+        marginBottom: 15,
     },
     enterButton: {
-        backgroundColor: '#cf5906', // A gold color button for a pop of color
-        padding: 18,
-        borderRadius: 12,
-        marginTop: 35, 
+        backgroundColor: '#0700fb', 
+        padding: 20,
+        borderRadius: 10,
+        marginTop: 30, 
     },
     enterText: {
-        fontFamily: 'AvenirNext-Bold',
         textAlign: 'center',
-        fontSize: 18,
-        color: '#000' // Dark text for contrast
+        fontWeight: '700',
+        fontSize: 16,
+        color: '#fff'
     }
 });
 

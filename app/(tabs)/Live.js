@@ -11,8 +11,6 @@ import {
   Modal
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { auth, database } from '../firebaseConfig';
-import { ref, push, onValue, off } from 'firebase/database';
 
 class Live extends Component {
   constructor(props) {
@@ -33,68 +31,25 @@ class Live extends Component {
     };
   }
 
-  componentDidMount() {
-    const user = auth.currentUser;
-    if (user) {
-      this.setState({ username: user.email });
-    } else {
-      console.log('No authenticated user, navigate to login');
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // current chatroom has changed
-    if (this.state.currentChatroom !== prevState.currentChatroom) {
-      // if leaving a chatroom, remove the listener from the old chatroom
-      if (prevState.currentChatroom) {
-        const prevChatroomRef = ref(database, 'chatrooms/' + prevState.currentChatroom);
-        off(prevChatroomRef);
-      }
-
-      // if joining a new chatroom, set up a listener for the new chatroom
-      if (this.state.currentChatroom) {
-        const chatroomRef = ref(database, 'chatrooms/' + this.state.currentChatroom);
-        onValue(chatroomRef, (snapshot) => {
-          if (snapshot.exists()) {
-            this.setState({
-              messages: {
-                ...this.state.messages,
-                [this.state.currentChatroom]: Object.values(snapshot.val())
-              }
-            });
-          } else {
-            this.setState({
-              messages: {
-                ...this.state.messages,
-                [this.state.currentChatroom]: []
-              }
-            });
-          }
-        });
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    //  listeners  removed when the component unmounts
-    if (this.state.currentChatroom) {
-      const chatroomRef = ref(database, 'chatrooms/' + this.state.currentChatroom);
-      off(chatroomRef);
-    }
-  }
-
   handleTextChange = (text) => {
     this.setState({ text });
   };
 
   sendMessage = () => {
-    const { text, currentChatroom } = this.state;
+    const { text, currentChatroom, messages } = this.state;
     if (text.trim() && currentChatroom) {
       const newMessage = { username: this.state.username, message: text };
-      const chatroomRef = ref(database, 'chatrooms/' + currentChatroom);
-      push(chatroomRef, newMessage);
+      const updatedMessages = messages[currentChatroom]
+        ? [...messages[currentChatroom], newMessage]
+        : [newMessage];
 
-      this.setState({ text: '' });
+      this.setState(prevState => ({
+        messages: {
+          ...prevState.messages,
+          [currentChatroom]: updatedMessages,
+        },
+        text: '',
+      }));
     }
   };
 
@@ -285,3 +240,4 @@ const styles = StyleSheet.create({
   });
 
 export default Live;
+

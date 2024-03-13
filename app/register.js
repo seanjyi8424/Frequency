@@ -1,7 +1,4 @@
 import React,{ useState } from 'react';
-import { auth, firebaseConfig } from './firebaseConfig'; // Make sure the path is correct
-import { getDatabase, ref, push } from 'firebase/database';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
 import Logo from '../assets/images/frequency_logo/logo2.js';
@@ -13,31 +10,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Register = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const navigation = useNavigation();
-
-    const handleRegister = async () => {
-        try {
-          // Create user with email and password
-          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          const user = userCredential.user;
-      
-          // Save user data to Realtime Database
-          const db = getDatabase();
-          const usersRef = ref(db, 'users/' + user.uid);
-          await push(usersRef, {
-            email: user.email,
-            // Add any other user data you want to store
-          });
-      
-          // Navigate to "HomePage" after successful registration
-          navigation.navigate('Login');
-        } catch (error) {
-          console.error(error);
-          // Handle registration error, display error message, etc.
-        }
-    };
 
     return (
         <SafeAreaView style={{ flex: 1, justifyContent:'center', backgroundColor: '#24292f'}}>
@@ -74,9 +47,6 @@ const Register = () => {
                         placeholderTextColor={'rgba(128,130,132,255)'}
                         style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         keyboardType="email-address" 
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                        
                     />
                 </View>
 
@@ -97,13 +67,11 @@ const Register = () => {
                         placeholderTextColor={'rgba(128,130,132,255)'}
                         style={{flex: 1, paddingVertical: 0, color:'#3379b5'}}
                         secureTextEntry={true}
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
                     />
                 </View>
 
                 <TouchableOpacity 
-                    onPress={handleRegister}
+                    onPress={() => navigation.replace('HomePage')}
                     style={{
                         backgroundColor:'#1fcafe',
                         borderColor:'#6cd5f5',
