@@ -36,7 +36,7 @@ if it doesn't work, do:
 yarn install 
 ```
 
-## Vector Icons Dep 
+## Vector Icons Dependency
 
 ```sh
 npx install @expo/vector-icons
