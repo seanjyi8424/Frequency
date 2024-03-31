@@ -1,4 +1,4 @@
-#Frequency App
+# Frequency App
 
 # 🚀 How to use
 
