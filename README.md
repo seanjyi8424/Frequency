@@ -1,23 +1,17 @@
-# Expo Router Example
+#Frequency App
 
-Use [`expo-router`](https://docs.expo.dev/router/introduction/) to build native navigation using files in the `app/` directory.
-
-## 🚀 How to use
+# 🚀 How to use
 
 ```sh
 npx expo start
 ```
-if there's an error (downloads all dependencies)
+if there is an error (downloads all dependencies)
 
 ```sh
 yarn add expo 
 ```
 
-## 📝 Notes
-
-- [Expo Router: Docs](https://docs.expo.dev/router/introduction/)
-
-# Firebase Set-up
+## Firebase Set-up
 
 install yarn and other necessities
 ```sh
@@ -36,10 +30,8 @@ if it doesn't work, do:
 yarn install 
 ```
 
-# For functionality sake, 
+## Vector Icons Dep 
 
 ```sh
 npx install @expo/vector-icons
 ```
-
-
