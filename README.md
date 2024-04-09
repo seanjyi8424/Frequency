@@ -20,6 +20,14 @@ if there is an error (downloads all dependencies)
 yarn add expo 
 ```
 
+To Update:
+```sh
+npm install expo@latest
+```
+```sh
+npx expo install --fix
+```
+
 ## Firebase Set-up
 
 install yarn and other necessities
