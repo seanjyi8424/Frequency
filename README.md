@@ -7,6 +7,9 @@ A music-centric social application where users can discover new trends, share, a
 Connect to Spotify API for various options like browse top songs and artists, create a list of favorites, stay updated with artist news/releases, and create chatrooms with topics.
 
 # 🚀 How to use
+```sh
+npm install
+```
 
 ```sh
 npx expo start
