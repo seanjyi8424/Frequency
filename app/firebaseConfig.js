@@ -4,14 +4,14 @@ import { getDatabase } from "firebase/database";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCZPtNrwxU5plviOh-E-o6ajpCCV3EO-gg",
-  authDomain: "frequency-1709785965876.firebaseapp.com",
-  databaseURL: "https://frequency-1709785965876-default-rtdb.firebaseio.com/",
-  projectId: "frequency-1709785965876",
-  storageBucket: "frequency-1709785965876.appspot.com",
-  messagingSenderId: "491029128292",
-  appId: "1:491029128292:web:b4ab65bd1b66767cb7ab71",
-  measurementId: "G-DB2DC142TY"
+  apiKey: "AIzaSyAkd5P0LLL5uju_ESjU-Hsmfj0GsPApUjs",
+  authDomain: "frequency-ucr.firebaseapp.com",
+  databaseURL: "https://frequency-ucr-default-rtdb.firebaseio.com",
+  projectId: "frequency-ucr",
+  storageBucket: "frequency-ucr.appspot.com",
+  messagingSenderId: "751412752357",
+  appId: "1:751412752357:web:078d718b491dbcd2d0490c",
+  measurementId: "G-7Z2TJD0RB7"
 };
 
 // Initialize Firebase

@@ -44,7 +44,7 @@ const Register = () => {
             <View style={{paddingHorizontal:25}}>
                 <View style={{alignItems: 'center'}}>
                     <Image
-                        source={require('../assets/images/frequency.png')} // Directly requiring the new image
+                        source={require('../assets/images/frequency_logo/logo2.svg')} // Directly requiring the new image
                         style={{ height: 325, width: 450 }}
                         resizeMode="contain"
                     />
