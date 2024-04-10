@@ -9,26 +9,34 @@ Connect to Spotify API for various options like browse top songs and artists, cr
 # Screenshots
 
 ## Login
-![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a height="100" width="100")
+![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a)
+<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a" width="100" height="100">
 
 ## Welcome/Landing Page
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/9dd1361c-4515-4237-bf4d-dece903088bd)
+<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/9dd1361c-4515-4237-bf4d-dece903088bd" width="100" height="100">
 
 ## Music Tab
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/f1a9e5b1-e138-49bd-9f5f-c1bee292c7d6)
+<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/f1a9e5b1-e138-49bd-9f5f-c1bee292c7d6" width="100" height="100">
 
 ## Artists Tab
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/534542c1-5585-4dbb-9bf3-2d86cd864ed5)
+<img src="https://your-image-url.type" width="100" height="100">
 
 ## Upcoming Tab
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/f956ab4a-a0ed-4931-bf8a-800d319cb1bc)
+<img src="https://your-image-url.type" width="100" height="100">
 
 ## Favorite Tab
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8eee423f-7474-4f52-bc18-3330beda2c21)
+<img src="https://your-image-url.type" width="100" height="100">
 
 ## Chatrooms
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/1231b1bc-f57d-43ef-8d46-6f0ce6399e97)
+<img src="https://your-image-url.type" width="100" height="100">
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/a0dae915-c0f2-4627-88e2-f929531678af)
+<img src="https://your-image-url.type" width="100" height="100">
 
 # 🚀 How to use
 ```sh
