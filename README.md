@@ -9,7 +9,7 @@ Connect to Spotify API for various options like browse top songs and artists, cr
 # Screenshots
 
 ## Login
-![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a| height=100 width=100)
+![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a height="100" width="100")
 
 ## Welcome/Landing Page
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/9dd1361c-4515-4237-bf4d-dece903088bd)
