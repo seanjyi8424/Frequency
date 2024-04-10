@@ -35,6 +35,7 @@ Connect to Spotify API for various options like browse top songs and artists, cr
 ## Chatrooms
 <img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/1231b1bc-f57d-43ef-8d46-6f0ce6399e97" width="350" height="600">
 <img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/a0dae915-c0f2-4627-88e2-f929531678af" width="350" height="600">
+
 <img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/630b5c87-6e26-4784-aa31-1732b7309507" width="275" height="600">
 <img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/a34ca1fd-5c57-4f34-b11b-6ed7b171b50b" width="275" height="600">
 
