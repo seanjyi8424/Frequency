@@ -9,16 +9,13 @@ Connect to Spotify API for various options like browse top songs and artists, cr
 # Screenshots
 
 ## Login
-![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a)
-<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a" width="100" height="100">
+<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/8296a082-0163-41c9-a8b8-4b23aec4bb4a" width="250" height="600">
 
 ## Welcome/Landing Page
-![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/9dd1361c-4515-4237-bf4d-dece903088bd)
-<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/9dd1361c-4515-4237-bf4d-dece903088bd" width="100" height="100">
+<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/9dd1361c-4515-4237-bf4d-dece903088bd" width="250" height="600">
 
 ## Music Tab
-![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/f1a9e5b1-e138-49bd-9f5f-c1bee292c7d6)
-<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/f1a9e5b1-e138-49bd-9f5f-c1bee292c7d6" width="100" height="100">
+<img src="https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/f1a9e5b1-e138-49bd-9f5f-c1bee292c7d6" width="250" height="600">
 
 ## Artists Tab
 ![image](https://github.com/seanjyi8424/Frequency-UCR/assets/108261874/534542c1-5585-4dbb-9bf3-2d86cd864ed5)
