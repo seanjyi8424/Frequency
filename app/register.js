@@ -4,6 +4,7 @@ import { getDatabase, ref, push } from 'firebase/database';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'expo-router';
+import Logo from '../assets/images/frequency_logo/logo2.js';
 import Twitter from '../assets/images/platform_logos/twitter.jsx';
 import Instagram from '../assets/images/platform_logos/instagram.jsx';
 import Facebook from '../assets/images/platform_logos/facebook.jsx';
@@ -43,10 +44,9 @@ const Register = () => {
         <SafeAreaView style={{ flex: 1, justifyContent:'center', backgroundColor: '#24292f'}}>
             <View style={{paddingHorizontal:25}}>
                 <View style={{alignItems: 'center'}}>
-                    <Image
-                        source={require('../assets/images/frequency_logo/logo2.svg')} // Directly requiring the new image
-                        style={{ height: 325, width: 450 }}
-                        resizeMode="contain"
+                    <Logo
+                        height={200}
+                        width={200}
                     />
                 </View>
 
